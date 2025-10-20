@@ -1,0 +1,551 @@
+/* Base styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  display: flex;
+  min-height: 100vh; /* Ensure body takes full viewport height */
+  background-color: #f8f9fa; /* Light background */
+  overflow-x: hidden; /* Prevent horizontal scroll due to transitions */
+}
+ .topbar {
+      height: 65px;
+      background-color: #fff;
+      border-radius:45px;
+      box-shadow: 1px 0px rgba(1, 1, 1, 0);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .greeting {
+      font-size: 18px;
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 2px solid #007bff;
+    }
+/* Sidebar styles */
+.sidebar {
+  width: 250px; /* Default width (open state) */
+  position: fixed;
+  height: 100%;
+  background-color: #2c3e50; /* Dark blue-gray */
+  color: white;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out; /* Smooth collapse/expand */
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.sidebar.collapsed { /* Styles when the 'collapsed' class is present (default on load) */
+  width: 0px; /* Collapsed width */
+}
+
+.sidebar-logo {
+  max-width: 60%; /* Original size for open state */
+  height: auto;
+  display: block;
+  border: solid green;
+  margin: 0 auto 30px; /* Center and add bottom margin */
+  transition: max-width 0.3s ease-in-out;
+}
+
+.sidebar.collapsed .sidebar-logo {
+  max-width: 80%; /* Adjust logo size when collapsed */
+}
+
+.sidebar a {
+  padding: 15px 20px; /* Padding for open state */
+  text-decoration: none;
+  color: white;
+  display: block;
+  font-size: 1.1em; /* Font size for open state */
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow text when collapsed */
+  text-overflow: ellipsis; /* Add ellipsis for hidden text */
+  text-align: left; /* Align text left for open state */
+}
+
+.sidebar.collapsed a { /* Styles for links when collapsed (default on load) */
+  padding: 15px 10px; /* Adjust padding for collapsed state */
+  font-size: 0.8em; /* Smaller font when collapsed */
+  text-align: center; /* Center text for collapsed state */
+}
+
+.sidebar a:hover {
+  background-color: #34495e; /* Slightly lighter on hover */
+  padding-left: 25px; /* Slight indent on hover */
+}
+
+/* Main content styles */
+.content {
+  margin-left: 250px; /* Matches sidebar width (open state) */
+  padding: 20px;
+  flex-grow: 1; /* Allows content to take remaining space */
+  transition: margin-left 0.3s ease-in-out; /* Smooth shifting */
+  background-color: #F7F7F7; /* White background for content */
+  min-height: 100vh; /* Ensure content area is at least full height */
+}
+
+.content.collapsed { /* Shifts content when sidebar is collapsed (default on load) */
+  margin-left: 60px; /* Matches collapsed sidebar width */
+}
+
+.content h1, .content h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Toggle button */
+.toggle-btn {
+  position: fixed;
+  left: 260px; /* Adjust based on sidebar width + padding (open state) */
+  top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.2em;
+  z-index: 1001; /* Above sidebar */
+  transition: left 0.3s ease-in-out, background-color 0.2s ease;
+}
+
+.toggle-btn.collapsed { /* Adjust when sidebar is collapsed (default on load) */
+  left: 70px; /* Adjust for collapsed sidebar width + padding */
+}
+
+.toggle-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Cards layout - (No changes needed here) */
+.cards {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap to the next line */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Center cards horizontally */
+  margin-top: 30px;
+}
+
+.card, .cardd {
+  background-color: #e9ecef; /* Light gray background */
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+  flex: 1; /* Allow cards to grow and shrink */
+  min-width: 280px; /* Minimum width before wrapping */
+  max-width: 350px; /* Max width for larger screens */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Ensure image fits */
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit; /* Inherit text color from parent */
+    display: block; /* Make the whole card clickable if it's wrapped in <a> */
+}
+
+.card:hover {
+  transform: translateY(-8px); /* Lifts the card slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+}
+
+.card h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.cardd img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Chatbot styles - (No changes needed here) */
+#chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.);
+    z-index: 1000;
+    animation: pulse 2s infinite; /* Pulsing animation */
+    transition: background-color 0.2s ease;
+}
+
+#chatbot-toggle:hover {
+    background-color: #218838;
+}
+
+#chatbot-box {
+    position: fixed;
+    bottom: 90px; /* Above the toggle button */
+    right: 20px;
+    width: 320px;
+    height: 450px;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+#chatbot-header {
+    background-color: #0eb809;
+    color: white;
+    padding: 12px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#chatbot-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #0a0203;
+}
+
+.message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    max-width: 75%;
+    word-wrap: break-word; /* Ensure long words break */
+}
+
+.message.user {
+    background-color: #e0f2f7; /* Light blue */
+    align-self: flex-end;
+    color: #333;
+    border-bottom-right-radius: 5px; /* Sharper corner on user side */
+}
+
+.message.bot {
+    background-color: #d4edda; /* Light green */
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px; /* Sharper corner on bot side */
+}
+
+#chatbot-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+}
+
+#chatbot-user-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 25px;
+    margin-right: 10px;
+    font-size: 1em;
+}
+
+#chatbot-send {
+    background-color: #10bb10;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+#chatbot-send:hover {
+    background-color: #0056b3;
+}
+
+/* Contact and Footer - (No changes needed here) */
+#contact {
+    margin-top: 50px;
+    text-align: center;
+    padding: 30px 0;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#contact a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    background-color: #343a40; /* Dark footer */
+    color: white;
+    font-size: 0.9em;
+}
+
+/* --- Animations --- (No changes needed here) */
+
+/* Fade In (for titles and paragraphs) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  opacity: 0; /* Hidden by default */
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Slide In from Top (for cardd) */
+@keyframes slideInTop {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in-top {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-in-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Slide In from Bottom (for cards) */
+@keyframes slideInBottom {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in-bottom {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-in-bottom.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Pulsing effect for chatbot button */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(40, 167, 69, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+
+/* For screens smaller than 992px (e.g., tablets and smaller desktops) */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 250px; /* Default width (open state) */
+  }
+
+  .sidebar.collapsed { /* Styles when the 'collapsed' class is present */
+    width: 60px; /* Collapsed width */
+  }
+
+  .content {
+    margin-left: 250px; /* Matches sidebar width (open state) */
+  }
+
+  .content.collapsed { /* Shifts content when sidebar is collapsed */
+    margin-left: 60px; /* Matches collapsed sidebar width */
+  }
+
+  .toggle-btn {
+    left: 260px; /* Adjust based on sidebar width + padding (open state) */
+  }
+
+  .toggle-btn.collapsed { /* Adjust when sidebar is collapsed */
+    left: 70px; /* Adjust for collapsed sidebar width + padding */
+  }
+}
+
+
+/* For screens smaller than 768px (e.g., tablets and large phones) */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column; /* Stack sidebar and content vertically */
+  }
+
+  .sidebar {
+    position: relative; /* Make sidebar flow with document */
+    width: 100%;
+    height: auto; /* Auto height when open */
+    padding-top: 10px;
+    box-shadow: none;
+    border-bottom: 1px solid #4a627d;
+  }
+
+  .sidebar.collapsed {
+    height: 60px; /* Collapsed height (just logo and toggle) */
+    overflow: hidden; /* Hide extra links when collapsed */
+  }
+
+  .sidebar a {
+    display: block; /* Display links by default (for open state) */
+  }
+
+  .sidebar.collapsed a {
+    display: none; /* Hide links when collapsed */
+  }
+
+  .sidebar-logo {
+      max-width: 100px; /* Smaller logo for mobile */
+      margin-bottom: 10px;
+  }
+
+  .content {
+    margin-left: 0; /* Content takes full width */
+    padding: 15px;
+  }
+
+  .content.collapsed {
+    margin-left: 0; /* No margin shift needed for mobile collapsed */
+  }
+
+  .toggle-btn {
+    position: absolute; /* Position relative to sidebar or content */
+    top: 15px;
+    right: 15px; /* Move to the right of the screen */
+    left: auto; /* Remove left positioning */
+    z-index: 1002; /* Ensure it's on top of sidebar */
+  }
+
+  .toggle-btn.collapsed {
+    left: auto; /* No specific left shift when collapsed on mobile */
+  }
+
+  .cards {
+    flex-direction: column; /* Stack cards vertically on smaller screens */
+    align-items: center; /* Center stacked cards */
+  }
+
+  .card, .cardd {
+    width: 90%; /* Make cards take almost full width */
+    max-width: 450px; /* Limit max width even when stacked */
+    padding: 20px;
+  }
+
+  #chatbot-box {
+      width: 90%; /* Wider chatbot on smaller screens */
+      right: 5%; /* Center it */
+      left: 5%;
+      height: 350px;
+      bottom: 80px;
+  }
+
+  #chatbot-toggle {
+      bottom: 15px;
+      right: 15px;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+  }
+
+  h1 {
+      font-size: 2em;
+  }
+  h2 {
+      font-size: 1.6em;
+  }
+}
+
+/* For screens smaller than 480px (e.g., most mobile phones) */
+@media (max-width: 480px) {
+  .sidebar {
+    padding-top: 5px;
+  }
+
+  .toggle-btn {
+    top: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    font-size: 1em;
+  }
+
+  .sidebar-logo {
+      max-width: 80px;
+  }
+
+  .content {
+      padding: 10px;
+  }
+
+  .card, .cardd {
+      padding: 15px;
+  }
+
+  #chatbot-box {
+      bottom: 70px;
+      width: 95%;
+      right: 2.5%;
+      left: 2.5%;
+  }
+}

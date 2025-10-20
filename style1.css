@@ -1,0 +1,189 @@
+/* -------------------------------------- */
+/* 1. CSS Custom Properties (Variables)   */
+/* -------------------------------------- */
+:root {
+    --primary-color: #3b82f6; /* Blue */
+    --primary-light: #60a5fa;
+    --text-color: #1f2937; /* Dark Gray */
+    --background-light: #f3f4f6; /* Light Gray Background */
+    --form-bg: #ffffff;
+    --shadow-light: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --border-radius: 12px;
+}
+
+/* -------------------------------------- */
+/* 2. Base & Typography                   */
+/* -------------------------------------- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+/* -------------------------------------- */
+/* 3. CSS Grid Layout (Responsive Container) */
+/* -------------------------------------- */
+.support-container {
+    display: grid;
+    /* Define columns: 40% for info, 60% for form */
+    grid-template-columns: 40% 60%; 
+    max-width: 1200px;
+    width: 90%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    overflow: hidden; /* Keeps children within rounded corners */
+}
+
+/* -------------------------------------- */
+/* 4. Left Panel Styling (Contact Info)   */
+/* -------------------------------------- */
+.contact-info {
+    background: var(--primary-color);
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-info h1 {
+    color: white;
+}
+
+.info-group {
+    margin-top: 2rem;
+}
+
+.info-group h3 {
+    margin: 0.5rem 0 0.2rem 0;
+    font-weight: 600;
+}
+
+.info-group p {
+    margin: 0;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.icon {
+    font-size: 1.5rem;
+    display: inline-block;
+    background-color: var(--primary-light);
+    padding: 8px;
+    border-radius: 50%;
+}
+
+
+/* -------------------------------------- */
+/* 5. Right Panel Styling (Form)          */
+/* -------------------------------------- */
+.contact-form-wrapper {
+    background-color: var(--form-bg);
+    padding: 40px;
+}
+
+.form-field-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    /* Advanced use of :focus-within for better UX */
+}
+
+.form-field-group:focus-within label {
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-sizing: border-box; /* Crucial for padding/border not adding to total width */
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-light);
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* -------------------------------------- */
+/* 6. Advanced Media Query (Responsiveness) */
+/* -------------------------------------- */
+@media (max-width: 768px) {
+    /* Collapse the Grid layout to a single column for mobile */
+    .support-container {
+        grid-template-columns: 1fr; /* Single column */
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .contact-info {
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .contact-form-wrapper {
+        padding: 30px 20px;
+    }
+    
+    .info-group {
+        text-align: left;
+    }
+}
