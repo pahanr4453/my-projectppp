@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spinner</title>
+  <style>
+    .spinner {
+      width: 90px;
+      height: 90px;
+      border: 6px solid red;
+      border-top: 7px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 100px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  <style>
+  .slide-in {
+    font-size: 24px;
+    position: relative;
+    animation: slide 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes slide {
+    0% {
+      left: -100px;
+      opacity: 0;
+    }
+    100% {
+      left: 0;
+      opacity: 1;
+    }
+  }
+</style>
+
+
+
+</head>
+<body bgcolor="black">
+  <div class="spinner"></div>
+ <div class="slide-in"><h1><center><font color="red"> Please wait.......!</div>
+</body>
+</html>

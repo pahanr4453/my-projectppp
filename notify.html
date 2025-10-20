@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Floating Support Widget with Socials</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>/* -------------------------------------- */
+/* 1. CSS Variables & Base Styles         */
+/* -------------------------------------- */
+:root {
+    --primary-color: #3b82f6;      /* Blue for the main button */
+    --whatsapp-color: #25d366;
+    --facebook-color: #0078ff;
+    --phone-color: #f97316;        /* Orange */
+    --youtube-color: #ff0000;      /* YouTube Red */
+    --tiktok-color: #000000;       /* TikTok Black (often combined with pink/blue glow) */
+    --widget-size: 60px;
+    --gap: 25px;                   /* Distance from the bottom/side of the viewport */
+    --shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    --animation-duration: 0.4s;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafb; /* Light background for the page */
+}
+
+/* -------------------------------------- */
+/* 2. Floating Widget Container (CENTERED)*/
+/* -------------------------------------- */
+.support-widget {
+    position: fixed;
+    bottom: var(--gap);
+    left: 50%;
+    transform: translateX(-50%); 
+    
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* -------------------------------------- */
+/* 3. Toggle Button                       */
+/* -------------------------------------- */
+.toggle-btn {
+    width: var(--widget-size);
+    height: var(--widget-size);
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, background-color 0.3s;
+    transform: rotate(0deg); 
+    outline: none;
+}
+
+.toggle-btn:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.open + .toggle-btn i {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+/* -------------------------------------- */
+/* 4. Contact Options (The hidden list)   */
+/* -------------------------------------- */
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px; 
+    
+    transform: translateY(100%) scale(0.8); 
+    opacity: 0;
+    pointer-events: none; 
+    transition: 
+        transform var(--animation-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+        opacity calc(var(--animation-duration) / 2); 
+}
+
+.contact-options.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* -------------------------------------- */
+/* 5. Individual Contact Options Styling  */
+/* -------------------------------------- */
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    min-width: 170px;
+    transition: all 0.3s ease;
+}
+
+.option i {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.option .label {
+    font-weight: 600;
+}
+
+/* --- Color & Hover Overrides for Support Options --- */
+.option.whatsapp { color: var(--whatsapp-color); border: 2px solid var(--whatsapp-color); }
+.option.whatsapp:hover { background-color: var(--whatsapp-color); color: white; transform: translateY(-3px); box-shadow: var(--shadow); }
+.option.whatsapp:hover i { color: white; }
+
+.option.facebook { color: var(--facebook-color); border: 2px solid var(--facebook-color); }
+.option.facebook:hover { background-color: var(--facebook-color); color: white; transform: translateY(-3px); box-shadow: var(--shadow); }
+.option.facebook:hover i { color: white; }
+
+.option.phone { color: var(--phone-color); border: 2px solid var(--phone-color); }
+.option.phone:hover { background-color: var(--phone-color); color: white; transform: translateY(-3px); box-shadow: var(--shadow); }
+.option.phone:hover i { color: white; }
+
+
+/* -------------------------------------- */
+/* 6. Social Media Links Section          */
+/* -------------------------------------- */
+.social-links-container {
+    position: fixed;
+    top: var(--gap); /* Distance from the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    display: flex;
+    gap: 15px; /* Space between icons */
+    z-index: 999; /* Slightly lower than the support widget */
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px; /* Size of the icon circle */
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.8rem; /* Size of the icon itself */
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* --- Specific Social Icon Colors & Hovers --- */
+.social-icon.youtube {
+    color: var(--youtube-color);
+}
+.social-icon.youtube:hover {
+    background-color: var(--youtube-color);
+    color: white;
+    transform: translateY(-5px) scale(1.1); /* Lift and grow slightly */
+    box-shadow: var(--shadow);
+}
+
+.social-icon.tiktok {
+    color: var(--tiktok-color);
+}
+.social-icon.tiktok:hover {
+    /* TikTok's unique hover effect: black background with a subtle neon glow */
+    background-color: var(--tiktok-color);
+    color: white;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 
+        0 0 10px rgba(255, 0, 80, 0.5), /* Pinkish glow */
+        0 0 20px rgba(0, 242, 234, 0.5), /* Cyan glow */
+        var(--shadow); /* Regular shadow */
+}
+
+/* -------------------------------------- */
+/* 7. Responsive Adjustments              */
+/* -------------------------------------- */
+@media (max-width: 400px) {
+    .option {
+        min-width: 140px;
+        padding: 8px 15px;
+    }
+    .option .label {
+        font-size: 0.9rem;
+    }
+
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.6rem;
+    }
+    .social-links-container {
+        gap: 10px;
+        top: 15px; /* Adjust top position for smaller screens */
+    }
+    .support-widget {
+        bottom: 15px; /* Adjust bottom position for smaller screens */
+    }
+}</style>
+</head>
+<body>
+
+    <div class="social-links-container">
+        <a href="https://www.youtube.com/YOUR_CHANNEL" target="_blank" class="social-icon youtube" title="Visit our YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.tiktok.com/@YOUR_USERNAME" target="_blank" class="social-icon tiktok" title="Follow us on TikTok">
+            <i class="fab fa-tiktok"></i>
+        </a>
+    </div>
+
+    <div class="support-widget">
+
+        <div class="contact-options" id="contactOptions">
+            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" class="option whatsapp" title="Chat on WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+                <span class="label">WhatsApp Chat</span>
+            </a>
+            
+            <a href="https://m.me/YOUR_FACEBOOK_PAGE_ID" target="_blank" class="option facebook" title="Message on Facebook">
+                <i class="fab fa-facebook-messenger"></i>
+                <span class="label">Messenger</span>
+            </a>
+            
+            <a href="tel:YOUR_PHONE_NUMBER" class="option phone" title="Call Us Now">
+                <i class="fas fa-phone"></i>
+                <span class="label">Normal Call</span>
+            </a>
+        </div>
+
+        <button class="toggle-btn" onclick="document.getElementById('contactOptions').classList.toggle('open')">
+            <i class="fas fa-headset"></i>
+        </button>
+
+    </div>
+    
+    <div style="height: 200vh; padding: 50px; text-align: center; background-color: #f0f2f5;">
+        <h1>Scroll Down to See the Floating Widget!</h1>
+        <p>And check out the social media icons at the top.</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spinner</title>
+  <style>
+    .spinner {
+      width: 90px;
+      height: 90px;
+      border: 6px solid red;
+      border-top: 7px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 100px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  <style>
+  .slide-in {
+    font-size: 24px;
+    position: relative;
+    animation: slide 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes slide {
+    0% {
+      left: -100px;
+      opacity: 0;
+    }
+    100% {
+      left: 0;
+      opacity: 1;
+    }
+  }
+    body {
+      background-color: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      position: relative;
+    }
+
+    /* --- Background Pulse Effect --- */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+      animation: backgroundPulse 4s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes backgroundPulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.2); opacity: 0.5; }
+    }
+
+    /* --- Logo Styling --- */
+    .logo-container {
+      margin-bottom: 20px;
+      animation: fade-in-scale 1.2s ease-out forwards;
+    }
+
+    .logo-text {
+      font-size: 42px;
+      font-weight: 800;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f39c12, #e74c3c, #8e44ad);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s infinite linear;
+      text-shadow: 0 0 8px rgba(243, 156, 18, 0.7);
+    }
+
+    .logo-text .highlight {
+      color: #3498db;
+      background: linear-gradient(to right, #3498db, #2ecc71);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* --- Spinner Animation --- */
+    .spinner {
+      width: 100px;
+      height: 100px;
+      border: 8px solid rgba(255, 255, 255, 0.2);
+      border-top: 8px solid #3498db;
+      border-left: 8px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1.5s cubic-bezier(0.65, 0.05, 0.36, 1) infinite,
+                 fade-in-scale 0.8s ease-out forwards;
+      box-shadow: 0 0 20px rgba(52, 152, 219, 0.8),
+                  0 0 30px rgba(52, 152, 219, 0.6);
+      margin-bottom: 40px;
+    }
+
+    @keyframes spin {
+      10% { transform: rotate(566deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* --- Slide-in & Shimmering Text --- */
+    .slide-in-text {
+      font-size: 38px;
+      font-weight: bold;
+      color: #e74c3c;
+      position: relative;
+      opacity: 0;
+      animation: slide-and-fade 1.5s ease-out 0.3s forwards,
+                 shimmer 2s infinite linear;
+      background: linear-gradient(to right, #e74c3c 0%, #f1c40f 50%, #e74c3c 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(231, 76, 60, 0.7);
+    }
+
+    @keyframes slide-and-fade {
+      0% {
+        left: -120px;
+        opacity: 10;
+        letter-spacing: 10px;
+      }
+      50% {
+        opacity: 10;
+        letter-spacing: normal;
+      }
+      100% {
+        left: 0;
+        opacity: 1;
+      }
+    }
+
+    /* --- Shimmer Animation (shared) --- */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* --- Fade-in Scale Animation --- */
+    @keyframes fade-in-scale {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* --- Responsive Adjustments --- */
+    @media (max-width: 600px) {
+      .logo-text {
+        font-size: 28px;
+      }
+
+      .spinner {
+        width: 60px;
+        height: 60px;
+        border-width: 8px;
+      }
+
+      .slide-in-text {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo with Gradient Shimmer -->
+  <div class="logo-container">
+    <span class="logo-text">Pradeep <span class="highlight">Darshana Et <br>2025 </span></span>
+  </div>
+
+ 
+
+  <!-- Slide-in Loading Text with Accessibility -->
+  <div class="slide-in-text" aria-live="polite">
+    <h1 style="margin: 0;"><center>Please wait...!</center></h1>
+  </div>
+
+</body>
+</html>
+
+</style>

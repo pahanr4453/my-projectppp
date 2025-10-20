@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ET Pradeep Darshana - Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --surface-color: #ffffff;
+            --background-color: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --error-color: #ef4444;
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--surface-color);
+            width: 100%;
+            max-width: 700px; /* Increased max-width to accommodate the image */
+            display: flex; /* Make container a flexbox */
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            animation: fadeIn 0.6s ease-out;
+            overflow: hidden; /* Ensure image corners are rounded with the container */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .illustration {
+            flex: 1; /* Allows it to take available space */
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--background-color), #e2e8f0);
+            padding: 20px;
+        }
+
+        .illustration img {
+            width: 100%;
+            max-width: 250px; /* Adjust max-width for the image */
+            height: auto;
+            border-radius: var(--radius-md);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .login-section {
+            flex: 1; /* Allows it to take available space */
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .logo-box {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            display: grid;
+            place-items: center;
+            border-radius: var(--radius-md);
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.025em;
+        }
+
+        .logo-text span {
+            color: var(--primary-color);
+        }
+
+        .logo-text p {
+            margin-top: 2px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .sign-in-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-family: inherit;
+            background: var(--background-color);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: block;
+            text-align: right;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-links a img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Stack elements vertically on small screens */
+                max-width: 420px; /* Revert to smaller max-width */
+            }
+            .illustration {
+                display: none; /* Hide illustration on small screens */
+            }
+            .login-section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="illustration">
+            <img src="images/mul.jpg" alt="Learning Illustration">
+        </div>
+        <div class="login-section">
+            <div class="logo">
+                <div class="logo-box">P</div>
+                <div class="logo-text">
+                    <h1>Pradeep Darshana<span>.ET</span></h1>
+                    <p>Sri Lanka's Best ET Class</p>
+                </div>
+            </div>
+            
+            <h2 class="sign-in-title">Welcome Back</h2>
+            
+            <form action="login.php" method="post" id="loginForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" name="password" required>
+                </div>
+                
+                <a href="fogotp.html" class="forgot-password">Forgot Password?</a>
+                
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+            
+            <div class="footer">
+                <p class="powered-by">
+                    Powered by <a href="#">Senesh Pahan</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
